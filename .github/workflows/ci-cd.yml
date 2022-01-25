@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Compile
         run: echo Hello, world!
+      
+      - name: Teste
+        run: echo ${{github.ref}}
 
   Deploy_Homologation:
     name: Deploy to Homologation
