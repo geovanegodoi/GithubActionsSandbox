@@ -16,14 +16,20 @@ jobs:
       - name: Compile
         run: echo Hello, world!
       
-      - name: Teste
+      - name: github.ref
         run: echo ${{github.ref}}
+        
+      - name: github.base_ref
+        run: echo ${{github.base_ref}}
+        
+      - name: github.event.pull_request.base.ref
+        run: echo ${{ github.event.pull_request.base.ref }}
 
   Deploy_Homologation:
     name: Deploy to Homologation
     runs-on: ubuntu-latest
     needs: [Build]
-    if: github.event_name == 'pull_request' && github.base_ref == 'refs/heads/develop'
+    if: github.base_ref == 'refs/heads/develop'
     environment: 
       name: Development
       url: http://azure.dev.com
@@ -36,7 +42,7 @@ jobs:
     name: Deploy to Production    
     runs-on: ubuntu-latest
     needs: [Deploy_Homologation]
-    if: github.event_name == 'pull_request' && github.base_ref == 'refs/heads/main'
+    if: github.base_ref == 'refs/heads/main'
 
     environment: 
       name: Production
