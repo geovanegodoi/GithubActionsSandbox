@@ -35,7 +35,6 @@ jobs:
       - name: Application Version
         run: echo ${{ steps.version.outputs.version }}
 
-
 #  Deploy_Homologation:
 #    name: Deploy to Homologation
 #    runs-on: ubuntu-latest
