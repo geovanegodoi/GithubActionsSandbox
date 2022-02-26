@@ -1,0 +1,13 @@
+version: 1
+wording:
+  patch:
+    - update
+    - initial
+  minor:
+    - change
+    - improve
+  major:
+    - breaking
+  release:
+    - release-candidate
+    - add-rc
