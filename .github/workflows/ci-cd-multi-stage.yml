@@ -1,0 +1,7 @@
+name: CI-CD Multi Stage
+
+on:
+  push:
+    branches: [ develop, main, feature/*, hotfix/* ]
+  pull_request:
+    branches: [ develop, main ]
