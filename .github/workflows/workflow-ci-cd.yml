@@ -91,7 +91,7 @@ jobs:
       - name: Create Tag
         uses: negz/create-tag@v1
         with:
-          version: v0.0.1#${{ needs.SEM-VERSION.outputs.output1 }}
+          version: v9.9.9 #${{ needs.SEM-VERSION.outputs.output1 }}
           message: Auto generated tag
           token: ${{ secrets.GITHUB_TOKEN }}
         
