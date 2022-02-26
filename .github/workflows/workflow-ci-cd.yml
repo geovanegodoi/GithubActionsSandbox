@@ -44,6 +44,30 @@ jobs:
 
       - name: Build
         run: echo Build APP3
+        
+  GENERATE-VERSION:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.version.outputs.version_tag }}
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Check Version
+        id: version
+        uses: paulhatch/semantic-version@v4.0.2
+        with:
+          # The prefix to use to identify tags
+          tag_prefix: "v"
+          major_pattern: "{MAJOR}"
+          minor_pattern: "{MINOR}"
+          format: "${major}.${minor}.${patch}"
+          short_tags: false
+          # If this is set to true, *every* commit will be treated as a new version.
+          bump_each_commit: false
 
   DOCKER-APPROVAL:
     runs-on: ubuntu-latest
