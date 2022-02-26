@@ -59,7 +59,6 @@ jobs:
       - name: Request Approval
         run: echo Request Approval
 
-
   APP1-DOCKER:
     runs-on: ubuntu-latest
     needs: [DOCKER-APPROVAL]
@@ -76,10 +75,48 @@ jobs:
       - name: Deploy Docker
         run: echo Deploy APP2 Docker
         
-  APP-3-DOCKER:
+  APP3-DOCKER:
     runs-on: ubuntu-latest
     needs: [DOCKER-APPROVAL]
     
     steps:
       - name: Deploy Docker
         run: echo Deploy APP3 Docker
+
+  PROD-APPROVAL:
+    runs-on: ubuntu-latest
+    needs: [APP1-BUILD, APP2-BUILD, APP3-BUILD]
+    
+    if: github.ref == 'refs/heads/main'
+    
+    environment: 
+      name: Production
+      url: https://prod.services.com
+          
+    steps:
+      - name: Request Approval
+        run: echo Request Approval
+
+  APP1-PROD:
+    runs-on: ubuntu-latest
+    needs: [PROD-APPROVAL]
+    
+    steps:
+      - name: Deploy Production
+        run: echo Deploy APP1 Production
+        
+  APP2-PROD:
+    runs-on: ubuntu-latest
+    needs: [PROD-APPROVAL]
+    
+    steps:
+      - name: Deploy Production
+        run: echo Deploy APP2 Production
+        
+  APP3-PROD:
+    runs-on: ubuntu-latest
+    needs: [PROD-APPROVAL]
+    
+    steps:
+      - name: Deploy Production
+        run: echo Deploy APP3 Production
