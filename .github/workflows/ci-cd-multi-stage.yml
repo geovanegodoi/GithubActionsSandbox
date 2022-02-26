@@ -1,4 +1,4 @@
-name: CI-CD MultiStage
+name: CI-CD Multi Stage
 
 on:
   push:
