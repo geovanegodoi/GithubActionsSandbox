@@ -45,7 +45,7 @@ jobs:
       - name: Build
         run: echo Build APP3
         
-  GENERATE-VERSION:
+  SEM-VERSION:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.version.outputs.version_tag }}
@@ -70,13 +70,30 @@ jobs:
           bump_each_commit: false
 
   CHECK-VERSION:
-    name: ${{ needs.GENERATE-VERSION.outputs.output1 }}
+    name: ${{ needs.SEM-VERSION.outputs.output1 }}
     runs-on: ubuntu-latest
-    needs: [APP1-BUILD, APP2-BUILD, APP3-BUILD, GENERATE-VERSION]
+    needs: [APP1-BUILD, APP2-BUILD, APP3-BUILD, SEM-VERSION]
       
     steps:
-      - name : Version ${{ needs.GENERATE-VERSION.outputs.output1 }}
-        run: echo ${{ needs.GENERATE-VERSION.outputs.output1 }}
+      - name : Version ${{ needs.SEM-VERSION.outputs.output1 }}
+        run: echo ${{ needs.SEM-VERSION.outputs.output1 }}
+  
+  CREATE-TAG:
+    runs-on: ubuntu-latest
+    needs: [SEM-VERSION, CHECK-VERSION]
+    
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Create Tag ${{ needs.SEM-VERSION.outputs.output1 }}
+        uses: negz/create-tag@v1
+        with:
+          version: ${{ needs.SEM-VERSION.outputs.output1 }}
+          message: Auto-generated
+          token: ${{ secrets.GITHUB_TOKEN }}
         
   DOCKER-APPROVAL:
     runs-on: ubuntu-latest
