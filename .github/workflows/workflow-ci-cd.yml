@@ -77,6 +77,20 @@ jobs:
     steps:
       - name : Version ${{ needs.GENERATE-VERSION.outputs.output1 }}
         run: echo ${{ needs.GENERATE-VERSION.outputs.output1 }}
+  
+  GENERATE-TAG:
+    runs-on: ubuntu-latest
+    needs: CHECK-VERSION
+    
+   # if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Create Tag
+        uses: negz/create-tag@v1
+        with:
+          version: ${{ needs.GENERATE-VERSION.outputs.output1 }}
+          message: Auto generated tag
+          token: ${{ secrets.GITHUB_TOKEN }}
         
   DOCKER-APPROVAL:
     runs-on: ubuntu-latest
