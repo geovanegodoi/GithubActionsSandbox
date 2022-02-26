@@ -33,7 +33,12 @@ jobs:
           bump_each_commit: false
 
       - name: Application Version
-        run: echo ${{ steps.version.outputs.version }}
+        run: |
+          echo ${{ steps.version.outputs.major }}
+          echo ${{ steps.version.outputs.minor }}
+          echo ${{ steps.version.outputs.patch }}
+          echo ${{ steps.version.outputs.version }}
+          echo ${{ steps.version.outputs.version_tag }}
 
 #  Deploy_Homologation:
 #    name: Deploy to Homologation
