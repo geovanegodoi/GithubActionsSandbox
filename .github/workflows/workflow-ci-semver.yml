@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - name: Build
         run: echo Build APP1
 
@@ -25,11 +20,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - name: Build
         run: echo Build APP2
         
@@ -37,11 +27,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - name: Build
         run: echo Build APP3
 
@@ -54,6 +39,11 @@ jobs:
       url: steps.version.outputs.version_tag
           
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
       - name: Application Version
         id: version
         uses: paulhatch/semantic-version@v4.0.2
@@ -66,3 +56,6 @@ jobs:
           short_tags: false
           # If this is set to true, *every* commit will be treated as a new version.
           bump_each_commit: false
+          
+      - name : ${{ steps.version.outputs.version_tag }}
+        run: echo ${{ steps.version.outputs.version_tag }}
