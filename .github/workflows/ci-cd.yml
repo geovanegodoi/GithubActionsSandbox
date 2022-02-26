@@ -36,29 +36,29 @@ jobs:
         run: echo ${{ steps.version.outputs.version }}
 
 
-  Deploy_Homologation:
-    name: Deploy to Homologation
-    runs-on: ubuntu-latest
-    needs: [Build]
-    if: github.ref == 'refs/heads/develop'
-    environment: 
-      name: Homologation
-      url: http://azure.dev.com
+#  Deploy_Homologation:
+#    name: Deploy to Homologation
+#    runs-on: ubuntu-latest
+#    needs: [Build]
+#    if: github.ref == 'refs/heads/develop'
+#    environment: 
+#      name: Homologation
+#      url: http://azure.dev.com
           
-    steps:
-      - name: Run a one-line script
-        run: echo I am deploying to Homologation
+#    steps:
+#      - name: Run a one-line script
+#        run: echo I am deploying to Homologation
 
-  Deploy_Production:
-    name: Deploy to Production    
-    runs-on: ubuntu-latest
-    needs: [Build]
-    if: github.ref == 'refs/heads/main'
+#  Deploy_Production:
+#    name: Deploy to Production    
+#    runs-on: ubuntu-latest
+#    needs: [Build]
+#    if: github.ref == 'refs/heads/main'
 
-    environment: 
-      name: Production
-      url: http://azure.com
+#    environment: 
+#      name: Production
+#      url: http://azure.com
       
-    steps:
-      - name: Run a one-line script
-        run: echo I am deploying to Production
+#    steps:
+#      - name: Run a one-line script
+#        run: echo I am deploying to Production
