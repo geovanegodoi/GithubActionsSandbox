@@ -1,53 +1,14 @@
-name: CI-CD Multi Stage
+name: Workflow CD
 
 on:
   push:
-    branches: [ develop, main, feature/*, hotfix/* ]
-  pull_request:
-    branches: [ develop, main ]
+    branches: [ main ]
 
   workflow_dispatch:
 
 jobs:
-  APP1-BUILD:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Build
-        run: echo Build APP1
-
-  APP2-BUILD:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Build
-        run: echo Build APP2
-        
-  APP3-BUILD:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Build
-        run: echo Build APP3
-
   DOCKER-APPROVAL:
     runs-on: ubuntu-latest
-    needs: [APP1-BUILD, APP2-BUILD, APP3-BUILD]
     
     if: github.ref == 'refs/heads/main'
     
