@@ -38,8 +38,8 @@ jobs:
           echo 'MINOR : ${{ steps.version.outputs.minor }}'
           echo 'PATCH : ${{ steps.version.outputs.patch }}'
           echo 'VERSION : ${{ steps.version.outputs.version }}'
-          echo 'TAG : ${{ steps.version.outputs.version_tag }}
-
+          echo 'TAG : ${{ steps.version.outputs.version_tag }}'
+          
 #  Deploy_Homologation:
 #    name: Deploy to Homologation
 #    runs-on: ubuntu-latest
