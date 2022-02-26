@@ -48,7 +48,7 @@ jobs:
   SEM-VERSION:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.version.outputs.version_tag }}
+      output1: ${{ steps.version.outputs.version }}
       
     steps:
       - name: Checkout
@@ -70,12 +70,12 @@ jobs:
           bump_each_commit: false
 
   CHECK-VERSION:
-    name: ${{ needs.SEM-VERSION.outputs.output1 }}
+    name: v${{ needs.SEM-VERSION.outputs.output1 }}
     runs-on: ubuntu-latest
     needs: [APP1-BUILD, APP2-BUILD, APP3-BUILD, SEM-VERSION]
       
     steps:
-      - name : Version ${{ needs.SEM-VERSION.outputs.output1 }}
+      - name : Version v${{ needs.SEM-VERSION.outputs.output1 }}
         run: echo ${{ needs.SEM-VERSION.outputs.output1 }}
   
   CREATE-TAG:
@@ -91,7 +91,7 @@ jobs:
       - name: Create Tag ${{ needs.SEM-VERSION.outputs.output1 }}
         uses: negz/create-tag@v1
         with:
-          version: ${{ needs.SEM-VERSION.outputs.output1 }}
+          version: v${{ needs.SEM-VERSION.outputs.output1 }}
           message: Auto-generated
           token: ${{ secrets.GITHUB_TOKEN }}
         
