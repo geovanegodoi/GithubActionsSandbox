@@ -1,4 +1,4 @@
-name: Workflow CI SemVer
+name: Workflow CI
 
 on:
   push:
@@ -50,7 +50,7 @@ jobs:
     needs: [APP1-BUILD, APP2-BUILD, APP3-BUILD]
         
     environment: 
-      name: DockerHub
+      name: Default
       url: steps.version.outputs.version_tag
           
     steps:
