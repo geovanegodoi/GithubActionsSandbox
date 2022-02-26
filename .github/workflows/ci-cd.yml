@@ -19,22 +19,14 @@ jobs:
           fetch-depth: 0
 
       - name: Generate Version
-        id: version
-        uses: paulhatch/semantic-version@v4.0.2
+        id: semver
+        uses: lukaszraczylo/semver-generator@v1
         with:
-          tag_prefix: "v"
-          major_pattern: "(MAJOR)"
-          minor_pattern: "(MINOR)"
-          format: "${major}.${minor}.${increment}"
-          # Optional path to check for changes. If any changes are detected in the path the
-          # 'changed' output will true. Enter multiple paths separated by spaces.
-          # change_path: "src/my-service"
-          short_tags: false
-          bump_each_commit: false
+          repository_local: true
 
       - name: Application Version
         run: |
-          echo 'VERSION : ${{ steps.version.outputs.version }}'
+          echo 'VERSION : ${{ steps.semver.outputs.semantic_version }}'
 
 
 #  Deploy_Homologation:
