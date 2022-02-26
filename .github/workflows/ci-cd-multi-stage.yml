@@ -101,6 +101,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [PROD-APPROVAL]
     
+    environment: 
+      name: Default
+      url: http://localhost:5000/swagger
+    
     steps:
       - name: Deploy Production
         run: echo Deploy APP1 Production
@@ -108,7 +112,11 @@ jobs:
   APP2-PROD:
     runs-on: ubuntu-latest
     needs: [PROD-APPROVAL]
-    
+
+    environment: 
+      name: Default
+      url: http://localhost:5001/swagger
+      
     steps:
       - name: Deploy Production
         run: echo Deploy APP2 Production
@@ -116,6 +124,10 @@ jobs:
   APP3-PROD:
     runs-on: ubuntu-latest
     needs: [PROD-APPROVAL]
+    
+    environment: 
+      name: Default
+      url: http://localhost:5002/swagger
     
     steps:
       - name: Deploy Production
