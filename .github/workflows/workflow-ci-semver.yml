@@ -44,7 +44,7 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Application Version
+      - name: Application Version ${{ steps.version.outputs.version_tag }}
         id: version
         uses: paulhatch/semantic-version@v4.0.2
         with:
@@ -57,5 +57,5 @@ jobs:
           # If this is set to true, *every* commit will be treated as a new version.
           bump_each_commit: false
           
-      - name : ${{ steps.version.outputs.version_tag }}
+      - name : Version ${{ steps.version.outputs.version_tag }}
         run: echo ${{ steps.version.outputs.version_tag }}
