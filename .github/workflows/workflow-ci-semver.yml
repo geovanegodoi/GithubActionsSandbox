@@ -62,4 +62,3 @@ jobs:
     steps:
       - name : Version ${{ needs.GENERATE-VERSION.outputs.output1 }}
         run: echo ${{ needs.GENERATE-VERSION.outputs.output1 }}
-
