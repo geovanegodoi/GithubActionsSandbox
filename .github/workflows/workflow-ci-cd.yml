@@ -1,4 +1,4 @@
-name: CI-CD Multi Stage
+name: Workflow CI-CD
 
 on:
   push:
