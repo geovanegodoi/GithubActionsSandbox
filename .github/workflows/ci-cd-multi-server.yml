@@ -26,6 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [Build]
     if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Run a one-line script
+        run: echo I am generating the deploy package
 
   Deploy_RIGHTNOW01:
     name: Deploy to RIGHTNOW01
