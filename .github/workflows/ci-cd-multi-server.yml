@@ -43,6 +43,9 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo I am deploying to RIGHTNOW01]
+      
+      - name: Run a one-line script
+        run: mkdir deploy01
 
   Deploy_RIGHTNOW02:
     name: Deploy to RIGHTNOW02
