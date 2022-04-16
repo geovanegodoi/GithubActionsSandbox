@@ -21,11 +21,11 @@ jobs:
       - name: Run a one-line script
         run: echo I am deploying to Homologation
         
-      - name: github.ref
-        run: echo github.ref
+      - name: ${{ github.ref }}
+        run: echo ${{ github.ref }}
         
-      - name: github.base_ref
-        run: echo github.base_ref
+      - name: ${{ github.base_ref }}
+        run: echo ${{ github.base_ref }}
 
   Artifact:
     name: Generate Artifact
