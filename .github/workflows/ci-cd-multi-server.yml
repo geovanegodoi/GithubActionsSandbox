@@ -33,7 +33,7 @@ jobs:
 
   Deploy_RIGHTNOW01:
     name: Deploy to RIGHTNOW01
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, srvprd01]
     needs: [Artifact]
     if: github.ref == 'refs/heads/main'
     environment: 
@@ -46,7 +46,7 @@ jobs:
 
   Deploy_RIGHTNOW02:
     name: Deploy to RIGHTNOW02
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, srvprd02]
     needs: [Artifact]
     if: github.ref == 'refs/heads/main'
     environment: 
@@ -59,7 +59,7 @@ jobs:
         
   Deploy_RIGHTNOW03:
     name: Deploy to RIGHTNOW03
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, srvprd03]
     needs: [Artifact]
     if: github.ref == 'refs/heads/main'
     environment: 
