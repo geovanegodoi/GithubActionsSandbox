@@ -1,11 +1,9 @@
 name: Workflow Sync Main
 
 on:
-  pull_request_target:
+  push:
     branches:
       - main
-    types:
-      - closed
       
   workflow_dispatch:
 
