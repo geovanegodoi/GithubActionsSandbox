@@ -5,12 +5,13 @@ on:
     branches:
       - main
     types:
-      - completed
+      - closed
       
   workflow_dispatch:
 
 jobs:
-  Build:
+  Syncronize:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -20,4 +21,4 @@ jobs:
           fetch-depth: 0
 
       - name: Run a one-line script
-        run: echo I am syncronizing 'main' to 'develop'
+        run: echo I am sync 'main' to 'develop'
