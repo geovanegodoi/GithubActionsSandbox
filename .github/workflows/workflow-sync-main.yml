@@ -2,13 +2,13 @@ name: Workflow Sync Main
 
 on:
   push:
-    branches: main
+    branches: 
+      - main
     
   workflow_dispatch:
 
 jobs:
   Syncronize:
-    if: github.event.pull_request.merged == true 
     runs-on: ubuntu-latest
 
     steps:
