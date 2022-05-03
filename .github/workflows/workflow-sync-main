@@ -1,0 +1,23 @@
+name: Workflow Sync Main
+
+on:
+  pull_request_target:
+    branches:
+      - master
+    types:
+      - completed
+      
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Run a one-line script
+        run: echo I am syncronizing 'main' to 'develop'
