@@ -2,7 +2,9 @@ name: Workflow Sync Main
 
 on:
   push:
-    branches: main
+    branches: 
+      - main
+      - feature/*
     
   workflow_dispatch:
 
