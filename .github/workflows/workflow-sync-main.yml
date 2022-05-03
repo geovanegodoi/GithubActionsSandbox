@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Syncronize:
+  sync-develop-squad-01:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,28 @@ jobs:
           branch: ${{ github.ref }}
           delete-branch: false
           base: develop-squad-01
-          title: This is an automatic PR from 'main' to 'develop-squad-01'
+          title: This is an auto PR from 'main' to 'develop-squad-01'
+          labels: auto-pull-request
+          assignees: gigiogodoi
+          reviewers: gigiogodoi
+
+  sync-develop-squad-02:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4.0.2
+        with:
+          commit-message: Auto PR to sync 'main'
+          branch: ${{ github.ref }}
+          delete-branch: false
+          base: develop-squad-02
+          title: This is an auto PR from 'main' to 'develop-squad-02'
           labels: auto-pull-request
           assignees: gigiogodoi
           reviewers: gigiogodoi
