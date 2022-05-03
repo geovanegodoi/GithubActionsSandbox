@@ -3,7 +3,7 @@ name: Workflow Sync Main
 on:
   pull_request_target:
     branches:
-      - master
+      - main
     types:
       - completed
       
